@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Aurora from "@/components/Aurora";
-import logo from "@/assets/logo.png";
+import Logo from "@/components/Logo";
 
 interface LoginPageProps {
   portalName: string;
@@ -15,7 +15,7 @@ const LoginPage = ({ portalName, dashboardPath, accentText }: LoginPageProps) =>
       <div className="relative z-10 w-full max-w-md mx-4">
         <div className="backdrop-blur-xl bg-navy/60 rounded-2xl p-8 border border-white/10">
           <div className="text-center mb-8">
-            <img src={logo} alt="Global Distribution" className="h-10 mx-auto mb-4" />
+            <Logo className="h-8 mx-auto mb-4" variant="light" />
             <h1 className="text-xl font-bold text-primary-foreground">{portalName}</h1>
             {accentText && <p className="text-primary-foreground/50 text-sm mt-1">{accentText}</p>}
           </div>

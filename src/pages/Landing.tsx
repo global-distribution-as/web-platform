@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Aurora from "@/components/Aurora";
-import logo from "@/assets/logo.png";
+import Logo from "@/components/Logo";
 import { Globe, Truck, Headphones } from "lucide-react";
 
 const Landing = () => {
@@ -11,7 +11,7 @@ const Landing = () => {
         <Aurora />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <div className="backdrop-blur-xl bg-navy/60 rounded-2xl p-8 md:p-12 border border-white/10">
-            <img src={logo} alt="Global Distribution AS" className="h-12 md:h-16 mx-auto mb-8" />
+            <Logo className="h-8 md:h-10 mx-auto mb-8" variant="light" />
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
               Your Trusted Partner for Premium European Sports Equipment
             </h1>
