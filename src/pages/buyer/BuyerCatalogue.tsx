@@ -1,0 +1,97 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import PortalLayout from "@/components/PortalLayout";
+import StatusBadge from "@/components/StatusBadge";
+import { LayoutDashboard, BookOpen, FileText, ShoppingCart, User, Search } from "lucide-react";
+import { buyerCatalogue } from "@/lib/data/buyer";
+
+const navItems = [
+  { label: 'Dashboard', path: '/buyer/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+  { label: 'Catalogue', path: '/buyer/catalogue', icon: <BookOpen className="h-4 w-4" /> },
+  { label: 'My Quotes', path: '/buyer/quotes', icon: <FileText className="h-4 w-4" /> },
+  { label: 'My Orders', path: '/buyer/orders', icon: <ShoppingCart className="h-4 w-4" /> },
+  { label: 'Profile', path: '/buyer/profile', icon: <User className="h-4 w-4" /> },
+];
+
+const BuyerCatalogue = () => {
+  const [search, setSearch] = useState('');
+  const [brandFilter, setBrandFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
+
+  const filtered = buyerCatalogue.filter(p => {
+    const matchSearch = p.name.toLowerCase().includes(search.toLowerCase()) || p.brand.toLowerCase().includes(search.toLowerCase());
+    const matchBrand = !brandFilter || p.brand === brandFilter;
+    const matchCategory = !categoryFilter || p.category === categoryFilter;
+    return matchSearch && matchBrand && matchCategory;
+  });
+
+  const categories = [...new Set(buyerCatalogue.map(p => p.category))];
+
+  return (
+    <PortalLayout navItems={navItems} portalName="Buyer Portal">
+      <div className="space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <h1 className="text-xl font-bold text-foreground">Product Catalogue</h1>
+          <div className="relative max-w-sm w-full">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg text-sm bg-card"
+            />
+          </div>
+        </div>
+
+        <div className="flex gap-2 flex-wrap">
+          <select
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="px-3 py-2 border border-border rounded-lg text-sm bg-card"
+          >
+            <option value="">All Categories</option>
+            {categories.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={brandFilter}
+            onChange={(e) => setBrandFilter(e.target.value)}
+            className="px-3 py-2 border border-border rounded-lg text-sm bg-card"
+          >
+            <option value="">All Brands</option>
+            <option value="Arc'teryx">Arc'teryx</option>
+          </select>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filtered.map((p) => (
+            <div key={p.id} className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-md transition-shadow">
+              <div className="h-40 bg-muted flex items-center justify-center">
+                <span className="text-muted-foreground text-xs">Product Image</span>
+              </div>
+              <div className="p-4 space-y-3">
+                <div>
+                  <h3 className="font-semibold text-foreground">{p.name}</h3>
+                  <p className="text-sm text-muted-foreground">{p.brand}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">Sizes: {p.sizes.join(', ')}</span>
+                  <StatusBadge status={p.availability} />
+                </div>
+                <p className="text-sm font-semibold text-foreground">{p.priceRange}</p>
+                <Link
+                  to="/buyer/quotes/new"
+                  className="block w-full py-2 bg-gold text-navy font-semibold rounded-lg text-center text-sm hover:bg-gold/90 transition-colors"
+                >
+                  Request Quote
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </PortalLayout>
+  );
+};
+
+export default BuyerCatalogue;
