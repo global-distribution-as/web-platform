@@ -35,7 +35,7 @@ const PortalLayout = ({ children, navItems, portalName, variant = 'default' }: P
       <aside className={`fixed md:static z-50 h-full w-64 bg-navy flex flex-col transition-transform duration-200 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="p-4 border-b border-sidebar-border">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Global Distribution" className="h-8 w-auto" />
+            <Logo className="h-6 w-auto" variant="light" />
           </Link>
           <p className="text-xs text-sidebar-foreground/60 mt-1">{portalName}</p>
         </div>
