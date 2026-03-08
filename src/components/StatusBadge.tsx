@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type StatusType = 'in-stock' | 'low-stock' | 'on-order' | 'pending' | 'confirmed' | 'cancelled' | 'pre-order' | 'processing' | 'dispatched' | 'in-transit' | 'arrived' | 'delivered' | 'quote-sent' | 'negotiating' | 'expired' | 'pending-review' | 'limited';
+type StatusType = 'in-stock' | 'low-stock' | 'on-order' | 'pending' | 'confirmed' | 'cancelled' | 'pre-order' | 'processing' | 'dispatched' | 'in-transit' | 'arrived' | 'delivered' | 'quote-sent' | 'negotiating' | 'expired' | 'pending-review' | 'limited' | 'completed';
 
 const statusConfig: Record<StatusType, { label: string; className: string }> = {
   'in-stock': { label: 'In Stock', className: 'bg-emerald-100 text-emerald-800' },
