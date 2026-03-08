@@ -24,11 +24,11 @@ const BuyerProfile = () => (
           { label: 'Account Type', value: buyerProfile.accountType },
         ].map((f) => (
           <div key={f.label}>
-            <label className="text-sm text-muted-foreground block mb-1">{f.label}</label>
-            <input type="text" defaultValue={f.value} className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-background" readOnly />
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">{f.label}</label>
+            <input type="text" defaultValue={f.value} className="w-full px-4 py-2.5 border border-border rounded-lg text-sm text-foreground bg-input focus:border-primary focus:outline-none transition-colors" readOnly />
           </div>
         ))}
-        <button className="px-6 py-2.5 bg-gold text-navy font-semibold rounded-lg text-sm hover:bg-gold/90 transition-colors">
+        <button className="px-6 py-2.5 bg-accent text-accent-foreground font-medium rounded-lg text-sm hover:brightness-110 transition-all duration-150">
           Save Changes
         </button>
       </div>

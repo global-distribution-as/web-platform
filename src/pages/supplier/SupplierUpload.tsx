@@ -17,16 +17,16 @@ const SupplierUpload = () => (
       <h1 className="text-xl font-bold text-foreground">Upload Price List</h1>
 
       <div className="bg-card rounded-xl border border-border p-8">
-        <div className="border-2 border-dashed border-border rounded-xl p-12 text-center">
+        <div className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-muted-foreground/30 transition-colors">
           <Upload className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
           <p className="text-foreground font-medium mb-1">Drag and drop your file here</p>
           <p className="text-muted-foreground text-sm mb-4">CSV or Excel files accepted</p>
-          <button className="px-6 py-2 bg-navy text-primary-foreground rounded-lg text-sm font-medium hover:bg-navy/90 transition-colors">
+          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:brightness-110 transition-all duration-150">
             Browse Files
           </button>
         </div>
         <div className="mt-4 flex justify-end">
-          <button className="text-sm text-gold hover:text-gold/80 font-medium transition-colors">
+          <button className="text-sm text-accent hover:text-accent/80 font-medium transition-colors">
             ↓ Download Template
           </button>
         </div>
@@ -38,19 +38,19 @@ const SupplierUpload = () => (
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-gray-light">
-              <th className="text-left p-3 font-medium text-muted-foreground">Filename</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Date</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Products Imported</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Status</th>
+            <tr className="border-b border-border">
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Filename</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Date</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Products Imported</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Status</th>
             </tr>
           </thead>
           <tbody>
             {supplierUploads.map((u, i) => (
-              <tr key={i} className="border-b border-border last:border-0">
+              <tr key={i} className="border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors">
                 <td className="p-3 font-medium text-foreground">{u.filename}</td>
                 <td className="p-3 text-muted-foreground">{u.date}</td>
-                <td className="p-3 text-right">{u.productsImported}</td>
+                <td className="p-3 text-right text-foreground">{u.productsImported}</td>
                 <td className="p-3"><StatusBadge status={u.status} /></td>
               </tr>
             ))}

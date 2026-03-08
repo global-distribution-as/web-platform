@@ -1,63 +1,73 @@
 import { Link } from "react-router-dom";
 import Aurora from "@/components/Aurora";
 import Logo from "@/components/Logo";
-import { Globe, Truck, Headphones } from "lucide-react";
+import { Globe, Truck, Headphones, ArrowRight } from "lucide-react";
 
 const Landing = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Hero */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <Aurora />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <div className="backdrop-blur-xl bg-navy/60 rounded-2xl p-8 md:p-12 border border-white/10">
-            <Logo className="h-8 md:h-10 mx-auto mb-8" variant="light" />
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
-              Your Trusted Partner for Premium European Sports Equipment
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/70 mb-10">
-              Connecting quality suppliers with buyers across Asia and beyond
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/supplier"
-                className="w-full sm:w-auto px-8 py-3 bg-navy text-primary-foreground font-semibold rounded-lg border border-white/20 hover:bg-navy/80 transition-colors text-center"
-              >
-                Supplier Portal
-              </Link>
-              <Link
-                to="/buyer"
-                className="w-full sm:w-auto px-8 py-3 bg-gold text-navy font-semibold rounded-lg hover:bg-gold/90 transition-colors text-center"
-              >
-                Buyer Portal
-              </Link>
-              <Link
-                to="/admin"
-                className="text-primary-foreground/50 hover:text-primary-foreground/80 text-sm underline transition-colors"
-              >
-                Admin Login
-              </Link>
-            </div>
+          <Logo className="h-12 md:h-16 mx-auto mb-6" variant="dark" />
+          <p className="uppercase text-xs md:text-sm tracking-[0.2em] text-foreground/40 font-medium mb-8">
+            Global Distribution AS
+          </p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 leading-[1.1] tracking-tight">
+            Premium Equipment.
+            <br />
+            <span className="text-accent">Global Reach.</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+            Connecting Europe's finest suppliers with buyers across Asia
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              to="/supplier"
+              className="w-full sm:w-auto px-8 py-3.5 backdrop-blur-xl bg-white/[0.06] text-foreground font-medium rounded-xl border border-white/[0.1] hover:bg-white/[0.1] transition-all duration-150 text-center text-sm"
+            >
+              Supplier Portal
+            </Link>
+            <Link
+              to="/buyer"
+              className="w-full sm:w-auto px-8 py-3.5 backdrop-blur-xl bg-white/[0.06] text-foreground font-medium rounded-xl border border-white/[0.1] hover:bg-white/[0.1] transition-all duration-150 text-center text-sm"
+            >
+              Buyer Portal
+            </Link>
+            <Link
+              to="/admin"
+              className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-150"
+            >
+              Admin →
+            </Link>
+          </div>
+        </div>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+          <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1.5">
+            <div className="w-1 h-2 bg-white/40 rounded-full animate-bounce" />
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-24 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-12">Why Choose Us</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-16 tracking-tight">Why Choose Us</h2>
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               { icon: Globe, title: 'Curated Selection', desc: 'Premium European sports equipment, carefully sourced from trusted suppliers.' },
               { icon: Truck, title: 'Reliable Fulfillment', desc: 'End-to-end logistics management from warehouse to your door.' },
               { icon: Headphones, title: 'Dedicated Support', desc: 'Personal account managers with local language support.' },
             ].map((f) => (
-              <div key={f.title} className="bg-card p-8 rounded-xl border border-border text-center">
-                <div className="w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <f.icon className="h-6 w-6 text-gold" />
+              <div key={f.title} className="bg-card p-8 rounded-xl border border-border hover:-translate-y-0.5 transition-all duration-150 group relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-5">
+                  <f.icon className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{f.title}</h3>
-                <p className="text-muted-foreground text-sm">{f.desc}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -65,31 +75,61 @@ const Landing = () => {
       </section>
 
       {/* How it works */}
-      <section className="py-20 px-6 bg-gray-light">
+      <section className="py-24 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-12">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-16 tracking-tight">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-8 left-[20%] right-[20%] h-px bg-border" />
             {[
               { step: '01', title: 'Suppliers list available stock', desc: 'Upload your product inventory and pricing through our supplier portal.' },
               { step: '02', title: 'We manage everything', desc: 'Pricing, logistics, and communication — all handled by our team.' },
               { step: '03', title: 'Buyers receive orders', desc: 'Confirmed orders shipped and tracked directly to your location.' },
             ].map((s) => (
-              <div key={s.step} className="text-center">
-                <div className="text-4xl font-bold text-gold mb-4">{s.step}</div>
+              <div key={s.step} className="text-center relative">
+                <div className="w-16 h-16 bg-accent/10 border border-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                  <span className="text-accent font-bold text-lg">{s.step}</span>
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{s.title}</h3>
-                <p className="text-muted-foreground text-sm">{s.desc}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Stats bar */}
+      <section className="py-16 px-6 border-y border-border">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { num: '500+', label: 'Products' },
+            { num: '50+', label: 'Suppliers' },
+            { num: '12', label: 'Countries' },
+            { num: '99%', label: 'On-Time' },
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <p className="text-3xl md:text-4xl font-bold text-foreground mb-1">{s.num}</p>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-navy py-8 px-6">
-        <div className="max-w-5xl mx-auto text-center text-primary-foreground/60 text-sm space-y-1">
-          <p className="font-medium text-primary-foreground/80">Global Distribution AS</p>
-          <p>contact@globaldistribution.com</p>
-          <p>Org.nr. 936 946 666 · © 2025</p>
+      <footer className="py-12 px-6 bg-[hsl(240,12%,3%)] border-t border-border">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            <Logo className="h-8" variant="dark" />
+          </div>
+          <div className="text-center md:text-left text-muted-foreground text-sm space-y-0.5">
+            <p>contact@globaldistribution.com</p>
+            <p>Org.nr. 936 946 666 · © 2025</p>
+          </div>
+          <div className="flex gap-6 text-sm">
+            <Link to="/supplier" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Supplier</Link>
+            <Link to="/buyer" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Buyer</Link>
+            <Link to="/admin" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Admin</Link>
+          </div>
         </div>
       </footer>
     </div>

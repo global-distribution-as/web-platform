@@ -35,7 +35,7 @@ const AdminDashboard = () => (
           </div>
           <div className="divide-y divide-border">
             {adminRecentQuotes.map((q, i) => (
-              <div key={i} className="p-3 flex justify-between text-sm">
+              <div key={i} className="p-3 flex justify-between text-sm hover:bg-white/[0.02] transition-colors">
                 <div>
                   <p className="font-medium text-foreground">{q.buyer}</p>
                   <p className="text-muted-foreground text-xs">{q.product}</p>
@@ -52,7 +52,7 @@ const AdminDashboard = () => (
           </div>
           <div className="divide-y divide-border">
             {adminPendingUploads.map((u, i) => (
-              <div key={i} className="p-3 flex justify-between text-sm">
+              <div key={i} className="p-3 flex justify-between text-sm hover:bg-white/[0.02] transition-colors">
                 <p className="font-medium text-foreground">{u.supplier}</p>
                 <span className="text-muted-foreground text-xs">{u.date}</span>
               </div>
