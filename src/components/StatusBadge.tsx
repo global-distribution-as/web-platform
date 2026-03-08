@@ -20,6 +20,7 @@ const statusConfig: Record<StatusType, { label: string; className: string }> = {
   'expired': { label: 'Expired', className: 'bg-red-100 text-red-800' },
   'pending-review': { label: 'Pending Review', className: 'bg-amber-100 text-amber-800' },
   'limited': { label: 'Limited Stock', className: 'bg-amber-100 text-amber-800' },
+  'completed': { label: 'Completed', className: 'bg-emerald-100 text-emerald-800' },
 };
 
 const StatusBadge = ({ status }: { status: StatusType }) => {
