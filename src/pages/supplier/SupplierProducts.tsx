@@ -18,28 +18,28 @@ const SupplierProducts = () => (
       <div className="bg-card rounded-xl border border-border overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-gray-light">
-              <th className="text-left p-3 font-medium text-muted-foreground">Product Name</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Brand</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">SKU</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Size</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Qty</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Price (NOK)</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Discount %</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Est. Delivery</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Status</th>
+            <tr className="border-b border-border">
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Product Name</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Brand</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">SKU</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Size</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Qty</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Price (NOK)</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Discount %</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Est. Delivery</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Status</th>
             </tr>
           </thead>
           <tbody>
-            {supplierProducts.map((p) => (
-              <tr key={p.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+            {supplierProducts.map((p, i) => (
+              <tr key={p.id} className={`border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 1 ? 'bg-surface-elevated/50' : ''}`}>
                 <td className="p-3 font-medium text-foreground">{p.name}</td>
                 <td className="p-3 text-muted-foreground">{p.brand}</td>
                 <td className="p-3 text-muted-foreground font-mono text-xs">{p.sku}</td>
-                <td className="p-3">{p.size}</td>
-                <td className="p-3 text-right">{p.qty}</td>
-                <td className="p-3 text-right font-medium">{p.priceNOK.toLocaleString()}</td>
-                <td className="p-3 text-right">{p.discountRRP}%</td>
+                <td className="p-3 text-foreground">{p.size}</td>
+                <td className="p-3 text-right text-foreground">{p.qty}</td>
+                <td className="p-3 text-right font-medium font-mono text-foreground">{p.priceNOK.toLocaleString()}</td>
+                <td className="p-3 text-right text-foreground">{p.discountRRP}%</td>
                 <td className="p-3 text-muted-foreground">{p.estDelivery}</td>
                 <td className="p-3"><StatusBadge status={p.status} /></td>
               </tr>

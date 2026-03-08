@@ -32,39 +32,39 @@ const BuyerQuoteNew = () => {
         <h1 className="text-xl font-bold text-foreground">Request a Quote</h1>
         <div className="bg-card rounded-xl border border-border p-6 space-y-5">
           <div>
-            <label className="text-sm text-muted-foreground block mb-1">Product</label>
-            <select className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-background">
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Product</label>
+            <select className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground focus:border-primary focus:outline-none transition-colors">
               <option value="">Select a product</option>
               {buyerCatalogue.map(p => <option key={p.id} value={p.id}>{p.name} — {p.brand}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-sm text-muted-foreground block mb-1">Model / SKU</label>
-            <input type="text" className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-background" placeholder="e.g. ARC-BAR-M" />
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Model / SKU</label>
+            <input type="text" className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. ARC-BAR-M" />
           </div>
           <div>
-            <label className="text-sm text-muted-foreground block mb-1">Sizes & Quantity per Size</label>
-            <textarea className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-background h-20" placeholder="e.g. S: 50, M: 100, L: 80" />
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Sizes & Quantity per Size</label>
+            <textarea className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground h-20 focus:border-primary focus:outline-none transition-colors" placeholder="e.g. S: 50, M: 100, L: 80" />
           </div>
           <div>
-            <label className="text-sm text-muted-foreground block mb-1">Total Quantity</label>
-            <input type="number" className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-background" placeholder="e.g. 230" />
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Total Quantity</label>
+            <input type="number" className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. 230" />
           </div>
           <div>
-            <label className="text-sm text-muted-foreground block mb-1">Delivery Timeline Preference</label>
-            <input type="text" className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-background" placeholder="e.g. Within 4 weeks" />
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Delivery Timeline Preference</label>
+            <input type="text" className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. Within 4 weeks" />
           </div>
           <div>
-            <label className="text-sm text-muted-foreground block mb-1">Additional Notes</label>
-            <textarea className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-background h-20" placeholder="Any special requirements..." />
+            <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Additional Notes</label>
+            <textarea className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground h-20 focus:border-primary focus:outline-none transition-colors" placeholder="Any special requirements..." />
           </div>
           <label className="flex items-center gap-2 text-sm text-foreground">
-            <input type="checkbox" className="rounded border-border" />
+            <input type="checkbox" className="rounded border-border bg-input" />
             I'm interested in pre-order items
           </label>
           <button
             onClick={() => setSubmitted(true)}
-            className="px-8 py-2.5 bg-gold text-navy font-semibold rounded-lg text-sm hover:bg-gold/90 transition-colors"
+            className="px-8 py-2.5 bg-accent text-accent-foreground font-medium rounded-lg text-sm hover:brightness-110 transition-all duration-150"
           >
             Submit Request
           </button>

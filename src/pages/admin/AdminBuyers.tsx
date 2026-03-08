@@ -19,28 +19,28 @@ const AdminBuyers = () => (
       <div className="bg-card rounded-xl border border-border overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-gray-light">
-              <th className="text-left p-3 font-medium text-muted-foreground">Buyer</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">WeChat</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Location</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Type</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Orders</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Quotes</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Manager</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Actions</th>
+            <tr className="border-b border-border">
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Buyer</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">WeChat</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Location</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Type</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Orders</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Quotes</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Manager</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {adminBuyers.map((b) => (
-              <tr key={b.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+            {adminBuyers.map((b, i) => (
+              <tr key={b.id} className={`border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 1 ? 'bg-surface-elevated/50' : ''}`}>
                 <td className="p-3 font-medium text-foreground">{b.name}</td>
                 <td className="p-3 text-muted-foreground font-mono text-xs">{b.wechatId}</td>
                 <td className="p-3 text-muted-foreground">{b.location}</td>
                 <td className="p-3 text-muted-foreground">{b.accountType}</td>
-                <td className="p-3 text-right">{b.totalOrders}</td>
-                <td className="p-3 text-right">{b.activeQuotes}</td>
+                <td className="p-3 text-right text-foreground">{b.totalOrders}</td>
+                <td className="p-3 text-right text-foreground">{b.activeQuotes}</td>
                 <td className="p-3 text-muted-foreground">{b.accountManager}</td>
-                <td className="p-3"><button className="text-xs text-gold hover:text-gold/80 font-medium">View</button></td>
+                <td className="p-3"><button className="text-xs text-primary hover:text-primary/80 font-medium transition-colors">View</button></td>
               </tr>
             ))}
           </tbody>

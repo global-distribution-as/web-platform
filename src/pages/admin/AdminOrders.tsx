@@ -20,35 +20,35 @@ const AdminOrders = () => (
       <div className="bg-card rounded-xl border border-border overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-border bg-gray-light">
-              <th className="text-left p-2 font-medium text-muted-foreground">Order ID</th>
-              <th className="text-left p-2 font-medium text-muted-foreground">Buyer</th>
-              <th className="text-left p-2 font-medium text-muted-foreground">Products</th>
-              <th className="text-right p-2 font-medium text-muted-foreground">Qty</th>
-              <th className="text-right p-2 font-medium text-muted-foreground">Cost (NOK)</th>
-              <th className="text-right p-2 font-medium text-muted-foreground">Sale (USD)</th>
-              <th className="text-right p-2 font-medium text-muted-foreground">Margin</th>
-              <th className="text-right p-2 font-medium text-muted-foreground">Deposit %</th>
-              <th className="text-right p-2 font-medium text-muted-foreground">Balance</th>
-              <th className="text-left p-2 font-medium text-muted-foreground">Type</th>
-              <th className="text-left p-2 font-medium text-muted-foreground">Stock</th>
-              <th className="text-left p-2 font-medium text-muted-foreground">Shipping</th>
-              <th className="text-left p-2 font-medium text-muted-foreground">Notes</th>
+            <tr className="border-b border-border">
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Order ID</th>
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Buyer</th>
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Products</th>
+              <th className="text-right p-2 font-medium text-muted-foreground uppercase tracking-wider">Qty</th>
+              <th className="text-right p-2 font-medium text-muted-foreground uppercase tracking-wider">Cost (NOK)</th>
+              <th className="text-right p-2 font-medium text-muted-foreground uppercase tracking-wider">Sale (USD)</th>
+              <th className="text-right p-2 font-medium text-muted-foreground uppercase tracking-wider">Margin</th>
+              <th className="text-right p-2 font-medium text-muted-foreground uppercase tracking-wider">Deposit %</th>
+              <th className="text-right p-2 font-medium text-muted-foreground uppercase tracking-wider">Balance</th>
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Type</th>
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Stock</th>
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Shipping</th>
+              <th className="text-left p-2 font-medium text-muted-foreground uppercase tracking-wider">Notes</th>
             </tr>
           </thead>
           <tbody>
-            {adminOrders.map((o) => (
-              <tr key={o.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+            {adminOrders.map((o, i) => (
+              <tr key={o.id} className={`border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 1 ? 'bg-surface-elevated/50' : ''}`}>
                 <td className="p-2 font-mono font-medium text-foreground">{o.id}</td>
                 <td className="p-2 text-foreground">{o.buyer}</td>
                 <td className="p-2 text-muted-foreground">{o.products}</td>
-                <td className="p-2 text-right">{o.qty}</td>
-                <td className="p-2 text-right font-mono">{o.supplierCostNOK.toLocaleString()}</td>
-                <td className="p-2 text-right font-mono">${o.salePriceUSD.toLocaleString()}</td>
-                <td className="p-2 text-right font-medium">{o.marginPct}%</td>
-                <td className="p-2 text-right">{o.depositPaid}%</td>
-                <td className="p-2 text-right font-mono">${o.balanceDueUSD.toLocaleString()}</td>
-                <td className="p-2">{o.orderType}</td>
+                <td className="p-2 text-right text-foreground">{o.qty}</td>
+                <td className="p-2 text-right font-mono text-foreground">{o.supplierCostNOK.toLocaleString()}</td>
+                <td className="p-2 text-right font-mono text-foreground">${o.salePriceUSD.toLocaleString()}</td>
+                <td className="p-2 text-right font-medium text-foreground">{o.marginPct}%</td>
+                <td className="p-2 text-right text-foreground">{o.depositPaid}%</td>
+                <td className="p-2 text-right font-mono text-foreground">${o.balanceDueUSD.toLocaleString()}</td>
+                <td className="p-2 text-muted-foreground">{o.orderType}</td>
                 <td className="p-2"><StatusBadge status={o.stockStatus} /></td>
                 <td className="p-2"><StatusBadge status={o.shippingStatus} /></td>
                 <td className="p-2 text-muted-foreground">{o.notes || '—'}</td>

@@ -18,22 +18,22 @@ const BuyerOrders = () => (
       <div className="bg-card rounded-xl border border-border overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-gray-light">
-              <th className="text-left p-3 font-medium text-muted-foreground">Order ID</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Products</th>
-              <th className="text-right p-3 font-medium text-muted-foreground">Qty</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Order Date</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Shipment</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Est. Arrival</th>
-              <th className="text-left p-3 font-medium text-muted-foreground">Tracking</th>
+            <tr className="border-b border-border">
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Order ID</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Products</th>
+              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Qty</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Order Date</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Shipment</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Est. Arrival</th>
+              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Tracking</th>
             </tr>
           </thead>
           <tbody>
-            {buyerOrders.map((o) => (
-              <tr key={o.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+            {buyerOrders.map((o, i) => (
+              <tr key={o.id} className={`border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 1 ? 'bg-surface-elevated/50' : ''}`}>
                 <td className="p-3 font-mono text-xs font-medium text-foreground">{o.id}</td>
                 <td className="p-3 text-foreground">{o.products}</td>
-                <td className="p-3 text-right">{o.qty}</td>
+                <td className="p-3 text-right text-foreground">{o.qty}</td>
                 <td className="p-3 text-muted-foreground">{o.orderDate}</td>
                 <td className="p-3"><StatusBadge status={o.shipmentStatus} /></td>
                 <td className="p-3 text-muted-foreground">{o.estArrival}</td>

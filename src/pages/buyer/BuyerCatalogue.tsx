@@ -39,7 +39,7 @@ const BuyerCatalogue = () => {
               placeholder="Search products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg text-sm bg-card"
+              className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
             />
           </div>
         </div>
@@ -48,7 +48,7 @@ const BuyerCatalogue = () => {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="px-3 py-2 border border-border rounded-lg text-sm bg-card"
+            className="px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground focus:border-primary focus:outline-none transition-colors"
           >
             <option value="">All Categories</option>
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
@@ -56,7 +56,7 @@ const BuyerCatalogue = () => {
           <select
             value={brandFilter}
             onChange={(e) => setBrandFilter(e.target.value)}
-            className="px-3 py-2 border border-border rounded-lg text-sm bg-card"
+            className="px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground focus:border-primary focus:outline-none transition-colors"
           >
             <option value="">All Brands</option>
             <option value="Arc'teryx">Arc'teryx</option>
@@ -65,8 +65,8 @@ const BuyerCatalogue = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((p) => (
-            <div key={p.id} className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-40 bg-muted flex items-center justify-center">
+            <div key={p.id} className="bg-card rounded-xl border border-border overflow-hidden hover:-translate-y-px hover:border-border/80 transition-all duration-150 group">
+              <div className="h-40 bg-surface-elevated flex items-center justify-center">
                 <span className="text-muted-foreground text-xs">Product Image</span>
               </div>
               <div className="p-4 space-y-3">
@@ -81,7 +81,7 @@ const BuyerCatalogue = () => {
                 <p className="text-sm font-semibold text-foreground">{p.priceRange}</p>
                 <Link
                   to="/buyer/quotes/new"
-                  className="block w-full py-2 bg-gold text-navy font-semibold rounded-lg text-center text-sm hover:bg-gold/90 transition-colors"
+                  className="block w-full py-2 bg-accent text-accent-foreground font-medium rounded-lg text-center text-sm hover:brightness-110 transition-all duration-150"
                 >
                   Request Quote
                 </Link>

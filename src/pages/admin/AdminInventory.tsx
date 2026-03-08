@@ -26,13 +26,13 @@ const AdminInventory = () => {
           <div className="flex gap-1 bg-card border border-border rounded-lg p-0.5">
             <button
               onClick={() => setView('kanban')}
-              className={`p-2 rounded-md text-sm ${view === 'kanban' ? 'bg-navy text-primary-foreground' : 'text-muted-foreground'}`}
+              className={`p-2 rounded-md text-sm transition-colors ${view === 'kanban' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
             >
               <LayoutGrid className="h-4 w-4" />
             </button>
             <button
               onClick={() => setView('table')}
-              className={`p-2 rounded-md text-sm ${view === 'table' ? 'bg-navy text-primary-foreground' : 'text-muted-foreground'}`}
+              className={`p-2 rounded-md text-sm transition-colors ${view === 'table' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
             >
               <List className="h-4 w-4" />
             </button>
@@ -51,12 +51,12 @@ const AdminInventory = () => {
                 </div>
                 <div className="p-2 space-y-2">
                   {adminInventory.filter(i => i.stage === stage).map((item) => (
-                    <div key={item.id} className="bg-gray-light rounded-lg p-3 text-sm space-y-1">
+                    <div key={item.id} className="bg-surface-elevated rounded-lg p-3 text-sm space-y-1 border border-border/50 hover:-translate-y-px transition-all duration-150">
                       <p className="font-medium text-foreground">{item.product}</p>
                       <p className="text-xs text-muted-foreground">Qty: {item.qty} · {item.supplier}</p>
                       <p className="text-xs text-muted-foreground">Entered: {item.dateEntered}</p>
                       <p className="text-xs text-muted-foreground">Next move: {item.estNextMove}</p>
-                      {item.notes && <p className="text-xs text-gold">{item.notes}</p>}
+                      {item.notes && <p className="text-xs text-accent">{item.notes}</p>}
                     </div>
                   ))}
                 </div>
@@ -67,21 +67,21 @@ const AdminInventory = () => {
           <div className="bg-card rounded-xl border border-border overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border bg-gray-light">
-                  <th className="text-left p-3 font-medium text-muted-foreground">Product</th>
-                  <th className="text-right p-3 font-medium text-muted-foreground">Qty</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">Supplier</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">Stage</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">Date Entered</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">Est. Next Move</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">Notes</th>
+                <tr className="border-b border-border">
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Product</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Qty</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Supplier</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Stage</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Date Entered</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Est. Next Move</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Notes</th>
                 </tr>
               </thead>
               <tbody>
-                {adminInventory.map((item) => (
-                  <tr key={item.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+                {adminInventory.map((item, i) => (
+                  <tr key={item.id} className={`border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 1 ? 'bg-surface-elevated/50' : ''}`}>
                     <td className="p-3 font-medium text-foreground">{item.product}</td>
-                    <td className="p-3 text-right">{item.qty}</td>
+                    <td className="p-3 text-right text-foreground">{item.qty}</td>
                     <td className="p-3 text-muted-foreground">{item.supplier}</td>
                     <td className="p-3 text-muted-foreground">{item.stage}</td>
                     <td className="p-3 text-muted-foreground">{item.dateEntered}</td>
