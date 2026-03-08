@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Aurora from "@/components/Aurora";
-import logo from "@/assets/logo.png";
+import Logo from "@/components/Logo";
 import { Globe, Truck, Headphones } from "lucide-react";
 
 const Landing = () => {
