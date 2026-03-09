@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import LoginPage from "./components/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
 
 // Supplier
@@ -42,27 +43,32 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Supplier Portal */}
-          <Route path="/supplier" element={<LoginPage portalName="Supplier Portal" dashboardPath="/supplier/dashboard" />} />
-          <Route path="/supplier/dashboard" element={<SupplierDashboard />} />
-          <Route path="/supplier/products" element={<SupplierProducts />} />
-          <Route path="/supplier/upload" element={<SupplierUpload />} />
-          <Route path="/supplier/orders" element={<SupplierOrders />} />
-          <Route path="/supplier/profile" element={<SupplierProfile />} />
+          <Route path="/supplier" element={<LoginPage portalName="Supplier Portal" dashboardPath="/supplier/dashboard" requireAuth />} />
+          <Route element={<ProtectedRoute role="supplier" loginPath="/supplier" />}>
+            <Route path="/supplier/dashboard" element={<SupplierDashboard />} />
+            <Route path="/supplier/products" element={<SupplierProducts />} />
+            <Route path="/supplier/upload" element={<SupplierUpload />} />
+            <Route path="/supplier/orders" element={<SupplierOrders />} />
+            <Route path="/supplier/profile" element={<SupplierProfile />} />
+          </Route>
 
           {/* Buyer Portal */}
-          <Route path="/buyer" element={<LoginPage portalName="Buyer Portal" dashboardPath="/buyer/dashboard" />} />
-          <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
-          <Route path="/buyer/catalogue" element={<BuyerCatalogue />} />
-          <Route path="/buyer/quotes" element={<BuyerQuotes />} />
-          <Route path="/buyer/quotes/new" element={<BuyerQuoteNew />} />
-          <Route path="/buyer/orders" element={<BuyerOrders />} />
-          <Route path="/buyer/profile" element={<BuyerProfile />} />
+          <Route path="/buyer" element={<LoginPage portalName="Buyer Portal" dashboardPath="/buyer/dashboard" requireAuth />} />
+          <Route element={<ProtectedRoute role="buyer" loginPath="/buyer" />}>
+            <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
+            <Route path="/buyer/catalogue" element={<BuyerCatalogue />} />
+            <Route path="/buyer/quotes" element={<BuyerQuotes />} />
+            <Route path="/buyer/quotes/new" element={<BuyerQuoteNew />} />
+            <Route path="/buyer/orders" element={<BuyerOrders />} />
+            <Route path="/buyer/profile" element={<BuyerProfile />} />
+          </Route>
 
           {/* Admin Portal */}
           <Route path="/admin" element={<LoginPage portalName="Admin Portal" dashboardPath="/admin/dashboard" accentText="Internal Access Only" requireAuth />} />
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute role="admin" loginPath="/admin" />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/suppliers" element={<AdminSuppliers />} />
             <Route path="/admin/buyers" element={<AdminBuyers />} />
