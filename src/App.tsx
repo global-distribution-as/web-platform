@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import LoginPage from "./components/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 
 // Supplier
@@ -60,14 +61,16 @@ const App = () => (
           <Route path="/buyer/profile" element={<BuyerProfile />} />
 
           {/* Admin Portal */}
-          <Route path="/admin" element={<LoginPage portalName="Admin Portal" dashboardPath="/admin/dashboard" accentText="Internal Access Only" />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/suppliers" element={<AdminSuppliers />} />
-          <Route path="/admin/buyers" element={<AdminBuyers />} />
-          <Route path="/admin/products" element={<AdminProducts />} />
-          <Route path="/admin/orders" element={<AdminOrders />} />
-          <Route path="/admin/inventory" element={<AdminInventory />} />
-          <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/admin" element={<LoginPage portalName="Admin Portal" dashboardPath="/admin/dashboard" accentText="Internal Access Only" requireAuth />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/suppliers" element={<AdminSuppliers />} />
+            <Route path="/admin/buyers" element={<AdminBuyers />} />
+            <Route path="/admin/products" element={<AdminProducts />} />
+            <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/admin/inventory" element={<AdminInventory />} />
+            <Route path="/admin/settings" element={<AdminSettings />} />
+          </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>

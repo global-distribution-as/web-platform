@@ -1,14 +1,40 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Aurora from "@/components/Aurora";
 import Logo from "@/components/Logo";
+import { supabase } from "@/lib/supabase";
 
 interface LoginPageProps {
   portalName: string;
   dashboardPath: string;
   accentText?: string;
+  requireAuth?: boolean;
 }
 
-const LoginPage = ({ portalName, dashboardPath, accentText }: LoginPageProps) => {
+const LoginPage = ({ portalName, dashboardPath, accentText, requireAuth }: LoginPageProps) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!requireAuth) {
+      navigate(dashboardPath);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      setError(error.message);
+    } else {
+      navigate(dashboardPath);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
       <Aurora />
@@ -19,22 +45,40 @@ const LoginPage = ({ portalName, dashboardPath, accentText }: LoginPageProps) =>
             <h1 className="text-xl font-bold text-foreground">{portalName}</h1>
             {accentText && <p className="text-muted-foreground text-sm mt-1">{accentText}</p>}
           </div>
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="text-muted-foreground text-sm block mb-1.5 font-medium">Email</label>
-              <input type="email" className="w-full px-4 py-2.5 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground text-sm focus:border-primary focus:outline-none transition-colors" placeholder="email@company.com" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-4 py-2.5 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground text-sm focus:border-primary focus:outline-none transition-colors"
+                placeholder="email@company.com"
+              />
             </div>
             <div>
               <label className="text-muted-foreground text-sm block mb-1.5 font-medium">Password</label>
-              <input type="password" className="w-full px-4 py-2.5 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground text-sm focus:border-primary focus:outline-none transition-colors" placeholder="••••••••" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full px-4 py-2.5 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground text-sm focus:border-primary focus:outline-none transition-colors"
+                placeholder="••••••••"
+              />
             </div>
-            <Link
-              to={dashboardPath}
-              className="block w-full py-2.5 bg-primary text-primary-foreground font-medium rounded-lg text-center hover:brightness-110 transition-all duration-150 text-sm"
+            {error && (
+              <p className="text-sm text-status-red">{error}</p>
+            )}
+            <button
+              type="submit"
+              disabled={loading}
+              className="block w-full py-2.5 bg-primary text-primary-foreground font-medium rounded-lg text-center hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-150 text-sm"
             >
-              Login
-            </Link>
-          </div>
+              {loading ? 'Signing in…' : 'Login'}
+            </button>
+          </form>
           <Link to="/" className="block text-center text-muted-foreground text-xs mt-6 hover:text-foreground transition-colors duration-150">
             ← Back to Home
           </Link>

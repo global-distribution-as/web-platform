@@ -1,7 +1,18 @@
+import { useState } from "react";
 import PortalLayout from "@/components/PortalLayout";
-import StatusBadge from "@/components/StatusBadge";
 import { LayoutDashboard, Package, Upload, ShoppingCart, User } from "lucide-react";
-import { supplierUploads } from "@/lib/data/supplier";
+import { supabase } from "@/lib/supabase";
+
+interface FormState {
+  name: string;
+  description: string;
+  category: string;
+  price_range: string;
+}
+
+const empty: FormState = { name: '', description: '', category: '', price_range: '' };
+
+const categories = ['Jackets', 'Insulation', 'Softshell', 'Down', 'Fleece', 'Running'];
 
 const navItems = [
   { label: 'Dashboard', path: '/supplier/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
@@ -11,54 +22,124 @@ const navItems = [
   { label: 'Profile', path: '/supplier/profile', icon: <User className="h-4 w-4" /> },
 ];
 
-const SupplierUpload = () => (
-  <PortalLayout navItems={navItems} portalName="Supplier Portal">
-    <div className="space-y-6">
-      <h1 className="text-xl font-bold text-foreground">Upload Price List</h1>
+const SupplierUpload = () => {
+  const [form, setForm] = useState<FormState>(empty);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-      <div className="bg-card rounded-xl border border-border p-8">
-        <div className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-muted-foreground/30 transition-colors">
-          <Upload className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
-          <p className="text-foreground font-medium mb-1">Drag and drop your file here</p>
-          <p className="text-muted-foreground text-sm mb-4">CSV or Excel files accepted</p>
-          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:brightness-110 transition-all duration-150">
-            Browse Files
-          </button>
-        </div>
-        <div className="mt-4 flex justify-end">
-          <button className="text-sm text-accent hover:text-accent/80 font-medium transition-colors">
-            ↓ Download Template
-          </button>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+
+    const { error } = await supabase.from('products').insert([{ ...form, status: 'pending' }]);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSuccess(true);
+      setForm(empty);
+    }
+    setSubmitting(false);
+  };
+
+  return (
+    <PortalLayout navItems={navItems} portalName="Supplier Portal">
+      <div className="space-y-6">
+        <h1 className="text-xl font-bold text-foreground">Submit a Product</h1>
+
+        <div className="bg-card rounded-xl border border-border p-6">
+          <p className="text-sm text-muted-foreground mb-6">
+            Products submitted here will be reviewed by the admin team before appearing in the buyer catalogue.
+          </p>
+
+          {success ? (
+            <div className="rounded-xl border border-status-green/30 bg-status-green/10 p-6 text-center space-y-2">
+              <p className="text-status-green font-semibold">Product submitted for review!</p>
+              <p className="text-sm text-muted-foreground">The admin team will approve it before it appears in the catalogue.</p>
+              <button
+                onClick={() => setSuccess(false)}
+                className="mt-2 text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+              >
+                Submit another
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Product Name</label>
+                  <input
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. Beta AR Jacket"
+                    className="w-full px-3 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</label>
+                  <select
+                    name="category"
+                    value={form.category}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground focus:border-primary focus:outline-none transition-colors"
+                  >
+                    <option value="">Select category</option>
+                    {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price Range (USD)</label>
+                <input
+                  name="price_range"
+                  value={form.price_range}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g. $200–$250"
+                  className="w-full px-3 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Description</label>
+                <textarea
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  placeholder="Product details, materials, features..."
+                  className="w-full px-3 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
+                />
+              </div>
+
+              {error && (
+                <p className="text-sm text-status-red">Failed to submit: {error}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full py-2.5 bg-accent text-accent-foreground font-medium rounded-lg text-sm hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-150"
+              >
+                {submitting ? 'Submitting…' : 'Submit for Review'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
-
-      <div className="bg-card rounded-xl border border-border overflow-x-auto">
-        <div className="p-4 border-b border-border">
-          <h2 className="font-semibold text-foreground">Upload History</h2>
-        </div>
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Filename</th>
-              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Date</th>
-              <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Products Imported</th>
-              <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {supplierUploads.map((u, i) => (
-              <tr key={i} className="border-b border-border last:border-0 hover:bg-white/[0.02] transition-colors">
-                <td className="p-3 font-medium text-foreground">{u.filename}</td>
-                <td className="p-3 text-muted-foreground">{u.date}</td>
-                <td className="p-3 text-right text-foreground">{u.productsImported}</td>
-                <td className="p-3"><StatusBadge status={u.status} /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </PortalLayout>
-);
+    </PortalLayout>
+  );
+};
 
 export default SupplierUpload;

@@ -33,7 +33,7 @@ const BuyerCatalogue = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data, error } = await supabase.from('products').select('*');
+      const { data, error } = await supabase.from('products').select('*').eq('status', 'active');
       if (error) {
         setError(error.message);
       } else {
