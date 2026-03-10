@@ -45,7 +45,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Landing />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Supplier Portal */}
