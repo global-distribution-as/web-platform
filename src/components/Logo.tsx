@@ -25,34 +25,33 @@ const Logo = ({ className = "h-10", variant = "dark", compact = false }: LogoPro
 
   return (
     <svg
-      viewBox="0 0 320 60"
+      viewBox="0 0 380 70"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Center the full logo — GL + globe + BAL spans ~148px, starts at x=86 */}
       {/* GL */}
-      <text x="86" y="30" fontFamily="Inter, sans-serif" fontWeight="800" fontSize="30" fill={textColor} letterSpacing="2" textAnchor="end">
+      <text x="0" y="32" fontFamily="Inter, sans-serif" fontWeight="800" fontSize="32" fill={textColor} letterSpacing="2">
         GL
       </text>
 
-      {/* Globe icon replacing O — optically centered */}
-      <g transform="translate(88, 2)">
-        <circle cx="13" cy="13" r="12" stroke={globeBlue} strokeWidth="1.5" fill="none" />
-        <ellipse cx="13" cy="13" rx="6.5" ry="12" stroke={globeGray} strokeWidth="0.8" fill="none" />
-        <ellipse cx="13" cy="13" rx="2.5" ry="12" stroke={globeGray} strokeWidth="0.5" fill="none" />
-        <line x1="1" y1="8.5" x2="25" y2="8.5" stroke={globeGray} strokeWidth="0.6" />
-        <line x1="1" y1="13" x2="25" y2="13" stroke={globeBlue} strokeWidth="0.8" />
-        <line x1="1" y1="17.5" x2="25" y2="17.5" stroke={globeGray} strokeWidth="0.6" />
+      {/* Globe icon replacing O — positioned after GL */}
+      <g transform="translate(56, 4)">
+        <circle cx="14" cy="14" r="12.5" stroke={globeBlue} strokeWidth="1.5" fill="none" />
+        <ellipse cx="14" cy="14" rx="7" ry="12.5" stroke={globeGray} strokeWidth="0.8" fill="none" />
+        <ellipse cx="14" cy="14" rx="3" ry="12.5" stroke={globeGray} strokeWidth="0.5" fill="none" />
+        <line x1="1.5" y1="9" x2="26.5" y2="9" stroke={globeGray} strokeWidth="0.6" />
+        <line x1="1.5" y1="14" x2="26.5" y2="14" stroke={globeBlue} strokeWidth="0.8" />
+        <line x1="1.5" y1="19" x2="26.5" y2="19" stroke={globeGray} strokeWidth="0.6" />
       </g>
 
       {/* BAL */}
-      <text x="116" y="30" fontFamily="Inter, sans-serif" fontWeight="800" fontSize="30" fill={textColor} letterSpacing="2">
+      <text x="86" y="32" fontFamily="Inter, sans-serif" fontWeight="800" fontSize="32" fill={textColor} letterSpacing="2">
         BAL
       </text>
 
-      {/* DISTRIBUTION AS — centered below */}
-      <text x="160" y="52" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="11" fill={textColor} letterSpacing="6" opacity="0.45" textAnchor="middle">
+      {/* DISTRIBUTION AS */}
+      <text x="1" y="60" fontFamily="Inter, sans-serif" fontWeight="500" fontSize="18" fill={textColor} letterSpacing="4" opacity="0.7">
         DISTRIBUTION AS
       </text>
     </svg>
