@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import PortalLayout from "@/components/PortalLayout";
 import StatCard from "@/components/StatCard";
 import { LayoutDashboard, Users, UserCheck, Package, ShoppingCart, Warehouse, Settings } from "lucide-react";
@@ -41,6 +42,7 @@ const statusColors: Record<string, string> = {
 };
 
 const AdminDashboard = () => {
+  const { t } = useTranslation();
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [pendingProducts, setPendingProducts] = useState<PendingProduct[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,21 +72,21 @@ const AdminDashboard = () => {
   return (
     <PortalLayout navItems={navItems} portalName="Admin Portal" variant="admin">
       <div className="space-y-6">
-        <h1 className="text-xl font-bold text-foreground">Admin Dashboard</h1>
+        <h1 className="text-xl font-bold text-foreground">{t('admin_dashboard')}</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          <StatCard label="Total Suppliers" value={8} />
-          <StatCard label="Total Buyers" value={23} />
-          <StatCard label="Active Orders" value={11} />
-          <StatCard label="Pending Quotes" value={6} />
-          <StatCard label="Products" value={124} />
-          <StatCard label="Orders This Month" value={14} />
+          <StatCard label={t('total_suppliers')} value={8} />
+          <StatCard label={t('total_buyers')} value={23} />
+          <StatCard label={t('active_orders')} value={11} />
+          <StatCard label={t('pending_quotes')} value={6} />
+          <StatCard label={t('products')} value={124} />
+          <StatCard label={t('orders_this_month')} value={14} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Inquiries */}
           <div className="bg-card rounded-xl border border-border">
             <div className="p-4 border-b border-border">
-              <h2 className="font-semibold text-foreground text-sm">Inquiries</h2>
+              <h2 className="font-semibold text-foreground text-sm">{t('inquiries')}</h2>
             </div>
             {loading ? (
               <div className="p-4 space-y-3">
@@ -93,7 +95,7 @@ const AdminDashboard = () => {
                 ))}
               </div>
             ) : inquiries.length === 0 ? (
-              <p className="p-4 text-sm text-muted-foreground">No inquiries yet.</p>
+              <p className="p-4 text-sm text-muted-foreground">{t('no_inquiries')}</p>
             ) : (
               <div className="divide-y divide-border">
                 {inquiries.map((q) => (
@@ -114,7 +116,7 @@ const AdminDashboard = () => {
                           onClick={() => updateInquiryStatus(q.id, 'read')}
                           className="text-[11px] text-primary hover:text-primary/80 font-medium transition-colors"
                         >
-                          Mark as read
+                          {t('mark_as_read')}
                         </button>
                       )}
                       {q.status !== 'replied' && (
@@ -122,7 +124,7 @@ const AdminDashboard = () => {
                           onClick={() => updateInquiryStatus(q.id, 'replied')}
                           className="text-[11px] text-status-green hover:text-status-green/80 font-medium transition-colors"
                         >
-                          Mark as replied
+                          {t('mark_as_replied')}
                         </button>
                       )}
                     </div>
@@ -135,7 +137,7 @@ const AdminDashboard = () => {
           {/* Pending Products */}
           <div className="bg-card rounded-xl border border-border">
             <div className="p-4 border-b border-border">
-              <h2 className="font-semibold text-foreground text-sm">Pending Supplier Uploads</h2>
+              <h2 className="font-semibold text-foreground text-sm">{t('pending_supplier_uploads')}</h2>
             </div>
             {loading ? (
               <div className="p-4 space-y-3">
@@ -144,7 +146,7 @@ const AdminDashboard = () => {
                 ))}
               </div>
             ) : pendingProducts.length === 0 ? (
-              <p className="p-4 text-sm text-muted-foreground">No pending uploads.</p>
+              <p className="p-4 text-sm text-muted-foreground">{t('no_pending_uploads')}</p>
             ) : (
               <div className="divide-y divide-border">
                 {pendingProducts.map((p) => (
@@ -157,7 +159,7 @@ const AdminDashboard = () => {
                       onClick={() => approveProduct(p.id)}
                       className="text-[11px] text-status-green hover:text-status-green/80 font-semibold transition-colors shrink-0"
                     >
-                      Approve
+                      {t('approve')}
                     </button>
                   </div>
                 ))}

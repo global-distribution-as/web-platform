@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import PortalLayout from "@/components/PortalLayout";
 import StatusBadge from "@/components/StatusBadge";
 import { LayoutDashboard, BookOpen, FileText, ShoppingCart, User, Search } from "lucide-react";
@@ -24,6 +25,7 @@ const navItems = [
 ];
 
 const BuyerCatalogue = () => {
+  const { t } = useTranslation();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -58,12 +60,12 @@ const BuyerCatalogue = () => {
     <PortalLayout navItems={navItems} portalName="Buyer Portal">
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <h1 className="text-xl font-bold text-foreground">Product Catalogue</h1>
+          <h1 className="text-xl font-bold text-foreground">{t('product_catalogue')}</h1>
           <div className="relative max-w-sm w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder={t('search_products')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg text-sm bg-input text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
@@ -77,7 +79,7 @@ const BuyerCatalogue = () => {
             onChange={(e) => setCategoryFilter(e.target.value)}
             className="px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground focus:border-primary focus:outline-none transition-colors"
           >
-            <option value="">All Categories</option>
+            <option value="">{t('all_categories')}</option>
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
           <select
@@ -85,7 +87,7 @@ const BuyerCatalogue = () => {
             onChange={(e) => setBrandFilter(e.target.value)}
             className="px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground focus:border-primary focus:outline-none transition-colors"
           >
-            <option value="">All Brands</option>
+            <option value="">{t('all_brands')}</option>
             {brands.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
         </div>
@@ -107,7 +109,7 @@ const BuyerCatalogue = () => {
 
         {error && (
           <div className="rounded-xl border border-status-red/30 bg-status-red/10 p-4 text-sm text-status-red">
-            Failed to load products: {error}
+            {t('failed_load_products')} {error}
           </div>
         )}
 
@@ -116,7 +118,7 @@ const BuyerCatalogue = () => {
             {filtered.map((p) => (
               <div key={p.id} className="bg-card rounded-xl border border-border overflow-hidden hover:-translate-y-px hover:border-border/80 transition-all duration-150 group">
                 <div className="h-40 bg-surface-elevated flex items-center justify-center">
-                  <span className="text-muted-foreground text-xs">Product Image</span>
+                  <span className="text-muted-foreground text-xs">{t('product_image')}</span>
                 </div>
                 <div className="p-4 space-y-3">
                   <div>
@@ -124,7 +126,7 @@ const BuyerCatalogue = () => {
                     <p className="text-sm text-muted-foreground">{p.brand}</p>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">Sizes: {p.sizes.join(', ')}</span>
+                    <span className="text-xs text-muted-foreground">{t('sizes')}: {p.sizes.join(', ')}</span>
                     <StatusBadge status={p.availability} />
                   </div>
                   <p className="text-sm font-semibold text-foreground">{p.price_range}</p>
@@ -132,13 +134,13 @@ const BuyerCatalogue = () => {
                     to="/buyer/quotes/new"
                     className="block w-full py-2 bg-accent text-accent-foreground font-medium rounded-lg text-center text-sm hover:brightness-110 transition-all duration-150"
                   >
-                    Request Quote
+                    {t('request_quote')}
                   </Link>
                 </div>
               </div>
             ))}
             {filtered.length === 0 && (
-              <p className="col-span-full text-center text-sm text-muted-foreground py-12">No products match your filters.</p>
+              <p className="col-span-full text-center text-sm text-muted-foreground py-12">{t('no_products_match')}</p>
             )}
           </div>
         )}

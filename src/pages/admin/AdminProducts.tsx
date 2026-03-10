@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import PortalLayout from "@/components/PortalLayout";
 import StatusBadge from "@/components/StatusBadge";
 import { LayoutDashboard, Users, UserCheck, Package, ShoppingCart, Warehouse, Settings } from "lucide-react";
@@ -25,6 +26,7 @@ const navItems = [
 ];
 
 const AdminProducts = () => {
+  const { t } = useTranslation();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -45,11 +47,11 @@ const AdminProducts = () => {
   return (
     <PortalLayout navItems={navItems} portalName="Admin Portal" variant="admin">
       <div className="space-y-4">
-        <h1 className="text-xl font-bold text-foreground">Master Product List</h1>
+        <h1 className="text-xl font-bold text-foreground">{t('master_product_list')}</h1>
 
         {error && (
           <div className="rounded-xl border border-status-red/30 bg-status-red/10 p-4 text-sm text-status-red">
-            Failed to load products: {error}
+            {t('failed_load_products')} {error}
           </div>
         )}
 
@@ -57,12 +59,12 @@ const AdminProducts = () => {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Product</th>
-                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Brand</th>
-                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Category</th>
-                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Price Range</th>
-                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Status</th>
-                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Actions</th>
+                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('product')}</th>
+                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('brand')}</th>
+                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('category')}</th>
+                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('price_range')}</th>
+                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('status')}</th>
+                <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
@@ -90,10 +92,10 @@ const AdminProducts = () => {
                           onClick={() => approveProduct(p.id)}
                           className="text-xs text-status-green hover:text-status-green/80 font-medium transition-colors"
                         >
-                          Approve
+                          {t('approve')}
                         </button>
                       )}
-                      <button className="text-xs text-primary hover:text-primary/80 font-medium transition-colors">Edit</button>
+                      <button className="text-xs text-primary hover:text-primary/80 font-medium transition-colors">{t('edit')}</button>
                     </td>
                   </tr>
                 ))
