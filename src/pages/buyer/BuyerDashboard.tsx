@@ -30,6 +30,7 @@ const BuyerDashboard = () => (
           <div>
             <h3 className="font-semibold text-foreground">Your Account Manager</h3>
             <p className="text-foreground font-medium mt-1">Jessica Chen</p>
+            <p className="text-muted-foreground text-sm">Asia Relations Manager</p>
             <p className="text-muted-foreground text-sm">WeChat: jessica_gdist</p>
             <p className="text-muted-foreground text-sm">jessica@globaldistribution.com</p>
           </div>
