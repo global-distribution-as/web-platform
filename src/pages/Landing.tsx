@@ -32,22 +32,24 @@ const Landing = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center flex flex-col items-center">
-          <Logo className="h-12 md:h-14 mb-5" variant="dark" />
-          <p className="uppercase text-[10px] md:text-xs tracking-[0.25em] text-white/35 font-medium mb-10">
-            Global Distribution AS
-          </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight text-white mb-4 leading-[1.08] tracking-tight">
-            Premium Equipment.
-            <br />
-            <span className="font-normal text-white/90">Global Reach.</span>
-          </h1>
-          <p className="text-base md:text-lg text-white/45 font-light mb-14 max-w-lg leading-relaxed">
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center flex flex-col items-center gap-0">
+          <Logo className="h-12 md:h-14" variant="dark" />
+
+          <div className="mt-12 mb-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-[200] text-white leading-[1.08] tracking-tight">
+              Premium Equipment.
+              <br />
+              <span className="font-light text-white/90">Global Reach.</span>
+            </h1>
+          </div>
+
+          <p className="text-base md:text-lg text-white/35 font-light mb-16 max-w-lg leading-relaxed">
             Connecting Europe's finest suppliers with buyers across Asia
           </p>
+
           <Link
             to="/login"
-            className="px-8 py-2.5 text-sm font-medium text-white/90 rounded-lg border border-white/[0.12] bg-white/[0.06] backdrop-blur-md hover:bg-white/[0.1] transition-all duration-150"
+            className="px-10 py-2.5 text-sm font-normal tracking-wide text-white/85 rounded-lg border border-white/[0.15] bg-transparent backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.25] hover:text-white transition-all duration-300"
           >
             Sign In
           </Link>
