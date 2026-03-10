@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { ReactNode, useState } from "react";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, LogOut } from "lucide-react";
 import Logo from "@/components/Logo";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 interface NavItem {
   label: string;
@@ -20,6 +22,13 @@ interface PortalLayoutProps {
 const PortalLayout = ({ children, navItems, portalName, variant = 'default', accentColor }: PortalLayoutProps) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const portal = portalName.toLowerCase().includes('buyer')
+    ? 'buyer'
+    : portalName.toLowerCase().includes('supplier')
+    ? 'supplier'
+    : 'admin';
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -83,7 +92,7 @@ const PortalLayout = ({ children, navItems, portalName, variant = 'default', acc
           </div>
           <Link to="/" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors duration-150 px-2">
             <LogOut className="h-3.5 w-3.5" />
-            Sign out
+            {t('sign_out')}
           </Link>
         </div>
       </aside>
@@ -95,6 +104,7 @@ const PortalLayout = ({ children, navItems, portalName, variant = 'default', acc
             <Menu className="h-5 w-5" />
           </button>
           <h2 className="text-foreground font-medium text-sm">{portalName}</h2>
+          <LanguageSwitcher portal={portal} />
         </header>
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
