@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
 
-type StatusType = 'in-stock' | 'low-stock' | 'on-order' | 'pending' | 'confirmed' | 'cancelled' | 'pre-order' | 'processing' | 'dispatched' | 'in-transit' | 'arrived' | 'delivered' | 'quote-sent' | 'negotiating' | 'expired' | 'pending-review' | 'limited' | 'completed';
+type StatusType = 'active' | 'in-stock' | 'low-stock' | 'on-order' | 'pending' | 'confirmed' | 'cancelled' | 'pre-order' | 'processing' | 'dispatched' | 'in-transit' | 'arrived' | 'delivered' | 'quote-sent' | 'negotiating' | 'expired' | 'pending-review' | 'limited' | 'completed';
 
 const statusConfig: Record<StatusType, { label: string; className: string }> = {
+  'active': { label: 'Active', className: 'bg-status-green/15 text-status-green' },
   'in-stock': { label: 'In Stock', className: 'bg-status-green/15 text-status-green' },
   'low-stock': { label: 'Low Stock', className: 'bg-status-amber/15 text-status-amber' },
   'on-order': { label: 'On Order', className: 'bg-status-blue/15 text-status-blue' },
