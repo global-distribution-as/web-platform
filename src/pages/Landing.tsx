@@ -57,7 +57,7 @@ const Landing = () => {
       {/* Footer */}
       <footer className="py-6 text-center bg-[#050510] border-t border-white/[0.04]">
         <p className="text-xs text-white/25 tracking-wide">
-          © 2025 Global Distribution AS
+          © 2026 Global Distribution AS
         </p>
       </footer>
     </div>
