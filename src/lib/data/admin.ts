@@ -67,7 +67,7 @@ export const adminPendingUploads = [
 ];
 
 export const adminTeam = [
+  { name: 'Martin', role: 'Managing Director' },
   { name: 'Daniel', role: 'Director of Operations and Strategy' },
-  { name: 'Martin', role: 'CEO' },
   { name: 'Jessica', role: 'Asia Relations Manager' },
 ];
