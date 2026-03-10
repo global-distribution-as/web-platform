@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
-import LoginPage from "./components/LoginPage";
+import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
@@ -43,11 +43,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Supplier Portal */}
-          <Route path="/supplier" element={<LoginPage portalName="Supplier Portal" dashboardPath="/supplier/dashboard" requireAuth />} />
-          <Route element={<ProtectedRoute role="supplier" loginPath="/supplier" />}>
+          <Route element={<ProtectedRoute role="supplier" loginPath="/login" />}>
             <Route path="/supplier/dashboard" element={<SupplierDashboard />} />
             <Route path="/supplier/products" element={<SupplierProducts />} />
             <Route path="/supplier/upload" element={<SupplierUpload />} />
@@ -56,8 +56,7 @@ const App = () => (
           </Route>
 
           {/* Buyer Portal */}
-          <Route path="/buyer" element={<LoginPage portalName="Buyer Portal" dashboardPath="/buyer/dashboard" requireAuth />} />
-          <Route element={<ProtectedRoute role="buyer" loginPath="/buyer" />}>
+          <Route element={<ProtectedRoute role="buyer" loginPath="/login" />}>
             <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
             <Route path="/buyer/catalogue" element={<BuyerCatalogue />} />
             <Route path="/buyer/quotes" element={<BuyerQuotes />} />
@@ -67,8 +66,7 @@ const App = () => (
           </Route>
 
           {/* Admin Portal */}
-          <Route path="/admin" element={<LoginPage portalName="Admin Portal" dashboardPath="/admin/dashboard" accentText="Internal Access Only" requireAuth />} />
-          <Route element={<ProtectedRoute role="admin" loginPath="/admin" />}>
+          <Route element={<ProtectedRoute role="admin" loginPath="/login" />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/suppliers" element={<AdminSuppliers />} />
             <Route path="/admin/buyers" element={<AdminBuyers />} />

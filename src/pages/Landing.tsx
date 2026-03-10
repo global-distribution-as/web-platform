@@ -22,24 +22,12 @@ const Landing = () => {
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
             Connecting Europe's finest suppliers with buyers across Asia
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex items-center justify-center">
             <Link
-              to="/supplier"
-              className="w-full sm:w-auto px-8 py-3.5 backdrop-blur-xl bg-white/[0.06] text-foreground font-medium rounded-xl border border-white/[0.1] hover:bg-white/[0.1] transition-all duration-150 text-center text-sm"
+              to="/login"
+              className="px-10 py-3.5 backdrop-blur-xl bg-white/[0.06] text-foreground font-medium rounded-xl border border-white/[0.1] hover:bg-white/[0.1] transition-all duration-150 text-sm"
             >
-              Supplier Portal
-            </Link>
-            <Link
-              to="/buyer"
-              className="w-full sm:w-auto px-8 py-3.5 backdrop-blur-xl bg-white/[0.06] text-foreground font-medium rounded-xl border border-white/[0.1] hover:bg-white/[0.1] transition-all duration-150 text-center text-sm"
-            >
-              Buyer Portal
-            </Link>
-            <Link
-              to="/admin"
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-150"
-            >
-              Admin →
+              Sign In
             </Link>
           </div>
         </div>
@@ -126,9 +114,7 @@ const Landing = () => {
             <p>Org.nr. 936 946 666 · © 2025</p>
           </div>
           <div className="flex gap-6 text-sm">
-            <Link to="/supplier" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Supplier</Link>
-            <Link to="/buyer" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Buyer</Link>
-            <Link to="/admin" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Admin</Link>
+            <Link to="/login" className="text-muted-foreground hover:text-foreground transition-colors duration-150">Sign In</Link>
           </div>
         </div>
       </footer>
