@@ -97,6 +97,97 @@ const no = {
   status: 'Status',
   actions: 'Handlinger',
   edit: 'Rediger',
+
+  // Admin Settings
+  settings: 'Innstillinger',
+  team_members: 'Teammedlemmer',
+  invite_team_member: 'Inviter teammedlem',
+  role: 'Rolle',
+  send_invite: 'Send invitasjon',
+  saving: 'Lagrer…',
+  invite_saved: 'Invitasjon lagret.',
+
+  // Admin Suppliers
+  suppliers: 'Leverandører',
+  contact: 'Kontakt',
+  location: 'Sted',
+  orders: 'Ordrer',
+  payment: 'Betaling',
+  last_active: 'Sist aktiv',
+  view: 'Se',
+
+  // Admin Buyers
+  buyers: 'Kjøpere',
+  buyer: 'Kjøper',
+  wechat: 'WeChat',
+  type: 'Type',
+  quotes: 'Tilbud',
+  manager: 'Ansvarlig',
+
+  // Admin Orders
+  all_orders: 'Alle ordrer',
+  order_id: 'Ordre-ID',
+  cost_nok: 'Kostnad (NOK)',
+  sale_usd: 'Salg (USD)',
+  margin: 'Margin',
+  deposit_pct: 'Depositum %',
+  balance: 'Saldo',
+  shipping: 'Frakt',
+  stock: 'Lager',
+  notes: 'Notater',
+
+  // Admin Inventory
+  inventory: 'Lager',
+  items: 'elementer',
+  qty: 'Antall',
+  supplier: 'Leverandør',
+  stage: 'Stadium',
+  date_entered: 'Dato inn',
+  est_next_move: 'Anslått neste flytt',
+
+  // Buyer Quotes
+  my_quotes: 'Mine tilbud',
+  new_quote_request: 'Ny tilbudsforespørsel',
+  quote_id: 'Tilbuds-ID',
+  requested: 'Forespurt',
+  deposit_col: 'Depositum',
+
+  // Buyer Quote New
+  request_received: 'Forespørsel mottatt',
+  request_received_msg: 'Din forespørsel er mottatt. Jessica vil kontakte deg innen 24 timer.',
+  request_a_quote: 'Be om tilbud',
+  select_product: 'Velg et produkt',
+  model_sku: 'Modell / SKU',
+  sizes_qty_per_size: 'Størrelser og antall per størrelse',
+  total_quantity: 'Totalt antall',
+  delivery_timeline: 'Foretrukket leveringstid',
+  additional_notes: 'Ytterligere notater',
+  preorder_interest: 'Jeg er interessert i forhåndsbestillingsvarer',
+  submit_request: 'Send forespørsel',
+
+  // Buyer Orders
+  my_orders: 'Mine ordrer',
+  order_date: 'Bestillingsdato',
+  shipment: 'Forsendelse',
+  est_arrival: 'Anslått ankomst',
+  tracking: 'Sporing',
+
+  // Buyer Profile
+  wechat_id: 'WeChat-ID',
+  shipping_address: 'Leveringsadresse',
+  account_type: 'Kontotype',
+
+  // Supplier Products
+  my_products: 'Mine produkter',
+  sku: 'SKU',
+  size: 'Størrelse',
+  price_nok: 'Pris (NOK)',
+  discount_pct: 'Rabatt %',
+  est_delivery: 'Anslått levering',
+
+  // Supplier Orders
+  buyer_ref: 'Kjøperreferanse',
+  payment_terms_col: 'Betalingsbetingelser',
 };
 
 export default no;

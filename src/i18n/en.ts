@@ -97,6 +97,97 @@ const en = {
   status: 'Status',
   actions: 'Actions',
   edit: 'Edit',
+
+  // Admin Settings
+  settings: 'Settings',
+  team_members: 'Team Members',
+  invite_team_member: 'Invite Team Member',
+  role: 'Role',
+  send_invite: 'Send Invite',
+  saving: 'Saving…',
+  invite_saved: 'Invite saved successfully.',
+
+  // Admin Suppliers
+  suppliers: 'Suppliers',
+  contact: 'Contact',
+  location: 'Location',
+  orders: 'Orders',
+  payment: 'Payment',
+  last_active: 'Last Active',
+  view: 'View',
+
+  // Admin Buyers
+  buyers: 'Buyers',
+  buyer: 'Buyer',
+  wechat: 'WeChat',
+  type: 'Type',
+  quotes: 'Quotes',
+  manager: 'Manager',
+
+  // Admin Orders
+  all_orders: 'All Orders',
+  order_id: 'Order ID',
+  cost_nok: 'Cost (NOK)',
+  sale_usd: 'Sale (USD)',
+  margin: 'Margin',
+  deposit_pct: 'Deposit %',
+  balance: 'Balance',
+  shipping: 'Shipping',
+  stock: 'Stock',
+  notes: 'Notes',
+
+  // Admin Inventory
+  inventory: 'Inventory',
+  items: 'items',
+  qty: 'Qty',
+  supplier: 'Supplier',
+  stage: 'Stage',
+  date_entered: 'Date Entered',
+  est_next_move: 'Est. Next Move',
+
+  // Buyer Quotes
+  my_quotes: 'My Quotes',
+  new_quote_request: 'New Quote Request',
+  quote_id: 'Quote ID',
+  requested: 'Requested',
+  deposit_col: 'Deposit',
+
+  // Buyer Quote New
+  request_received: 'Request Received',
+  request_received_msg: 'Your request has been received. Jessica will contact you within 24 hours.',
+  request_a_quote: 'Request a Quote',
+  select_product: 'Select a product',
+  model_sku: 'Model / SKU',
+  sizes_qty_per_size: 'Sizes & Quantity per Size',
+  total_quantity: 'Total Quantity',
+  delivery_timeline: 'Delivery Timeline Preference',
+  additional_notes: 'Additional Notes',
+  preorder_interest: "I'm interested in pre-order items",
+  submit_request: 'Submit Request',
+
+  // Buyer Orders
+  my_orders: 'My Orders',
+  order_date: 'Order Date',
+  shipment: 'Shipment',
+  est_arrival: 'Est. Arrival',
+  tracking: 'Tracking',
+
+  // Buyer Profile
+  wechat_id: 'WeChat ID',
+  shipping_address: 'Shipping Address',
+  account_type: 'Account Type',
+
+  // Supplier Products
+  my_products: 'My Products',
+  sku: 'SKU',
+  size: 'Size',
+  price_nok: 'Price (NOK)',
+  discount_pct: 'Discount %',
+  est_delivery: 'Est. Delivery',
+
+  // Supplier Orders
+  buyer_ref: 'Buyer Ref',
+  payment_terms_col: 'Payment Terms',
 };
 
 export default en;

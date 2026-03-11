@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PortalLayout from "@/components/PortalLayout";
 import { LayoutDashboard, Users, UserCheck, Package, ShoppingCart, Warehouse, Settings, UserPlus } from "lucide-react";
 import { adminTeam } from "@/lib/data/admin";
@@ -29,6 +30,7 @@ const INVITE_ROLES = [
 ];
 
 const AdminSettings = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [role, setRole] = useState(INVITE_ROLES[0]);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -39,8 +41,6 @@ const AdminSettings = () => {
     setStatus('loading');
     setErrorMsg('');
 
-    // Insert a pending invite row into user_roles keyed by email.
-    // When the user signs up, their user_id can be linked via a trigger or onboarding step.
     const { error } = await supabase
       .from('user_roles')
       .insert({ email, role });
@@ -58,11 +58,11 @@ const AdminSettings = () => {
   return (
     <PortalLayout navItems={navItems} portalName="Admin Portal" variant="admin">
       <div className="space-y-6">
-        <h1 className="text-xl font-bold text-foreground">Settings</h1>
+        <h1 className="text-xl font-bold text-foreground">{t('settings')}</h1>
 
         <div className="bg-card rounded-xl border border-border">
           <div className="p-4 border-b border-border">
-            <h2 className="font-semibold text-foreground">Team Members</h2>
+            <h2 className="font-semibold text-foreground">{t('team_members')}</h2>
           </div>
           <div className="divide-y divide-border">
             {adminTeam.map((m) => (
@@ -85,11 +85,11 @@ const AdminSettings = () => {
 
         <div className="bg-card rounded-xl border border-border p-6 max-w-md">
           <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-            <UserPlus className="h-4 w-4" /> Invite Team Member
+            <UserPlus className="h-4 w-4" /> {t('invite_team_member')}
           </h3>
           <form onSubmit={handleInvite} className="space-y-4">
             <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Email</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">{t('email')}</label>
               <input
                 type="email"
                 required
@@ -100,7 +100,7 @@ const AdminSettings = () => {
               />
             </div>
             <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">Role</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider block mb-1.5 font-medium">{t('role')}</label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
@@ -115,14 +115,14 @@ const AdminSettings = () => {
               <p className="text-sm text-destructive">{errorMsg}</p>
             )}
             {status === 'success' && (
-              <p className="text-sm text-status-green">Invite saved successfully.</p>
+              <p className="text-sm text-status-green">{t('invite_saved')}</p>
             )}
             <button
               type="submit"
               disabled={status === 'loading'}
               className="px-6 py-2.5 bg-primary text-primary-foreground font-medium rounded-lg text-sm hover:brightness-110 transition-all duration-150 disabled:opacity-50"
             >
-              {status === 'loading' ? 'Saving…' : 'Send Invite'}
+              {status === 'loading' ? t('saving') : t('send_invite')}
             </button>
           </form>
         </div>

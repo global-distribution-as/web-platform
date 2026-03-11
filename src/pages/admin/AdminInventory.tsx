@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PortalLayout from "@/components/PortalLayout";
 import { LayoutDashboard, Users, UserCheck, Package, ShoppingCart, Warehouse, Settings, LayoutGrid, List } from "lucide-react";
 import { adminInventory } from "@/lib/data/admin";
@@ -16,13 +17,14 @@ const navItems = [
 const stages = ['At Supplier', 'At Sandefjord Warehouse', 'In Transit / With Jessica'] as const;
 
 const AdminInventory = () => {
+  const { t } = useTranslation();
   const [view, setView] = useState<'kanban' | 'table'>('kanban');
 
   return (
     <PortalLayout navItems={navItems} portalName="Admin Portal" variant="admin">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold text-foreground">Inventory</h1>
+          <h1 className="text-xl font-bold text-foreground">{t('inventory')}</h1>
           <div className="flex gap-1 bg-card border border-border rounded-lg p-0.5">
             <button
               onClick={() => setView('kanban')}
@@ -46,14 +48,14 @@ const AdminInventory = () => {
                 <div className="p-3 border-b border-border">
                   <h3 className="font-semibold text-foreground text-sm">{stage}</h3>
                   <span className="text-xs text-muted-foreground">
-                    {adminInventory.filter(i => i.stage === stage).length} items
+                    {adminInventory.filter(i => i.stage === stage).length} {t('items')}
                   </span>
                 </div>
                 <div className="p-2 space-y-2">
                   {adminInventory.filter(i => i.stage === stage).map((item) => (
                     <div key={item.id} className="bg-surface-elevated rounded-lg p-3 text-sm space-y-1 border border-border/50 hover:-translate-y-px transition-all duration-150">
                       <p className="font-medium text-foreground">{item.product}</p>
-                      <p className="text-xs text-muted-foreground">Qty: {item.qty} · {item.supplier}</p>
+                      <p className="text-xs text-muted-foreground">{t('qty')}: {item.qty} · {item.supplier}</p>
                       <p className="text-xs text-muted-foreground">Entered: {item.dateEntered}</p>
                       <p className="text-xs text-muted-foreground">Next move: {item.estNextMove}</p>
                       {item.notes && <p className="text-xs text-accent">{item.notes}</p>}
@@ -68,13 +70,13 @@ const AdminInventory = () => {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Product</th>
-                  <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Qty</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Supplier</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Stage</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Date Entered</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Est. Next Move</th>
-                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">Notes</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('product')}</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('qty')}</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('supplier')}</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('stage')}</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('date_entered')}</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('est_next_move')}</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">{t('notes')}</th>
                 </tr>
               </thead>
               <tbody>

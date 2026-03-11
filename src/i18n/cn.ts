@@ -97,6 +97,97 @@ const cn = {
   status: '状态',
   actions: '操作',
   edit: '编辑',
+
+  // Admin Settings
+  settings: '设置',
+  team_members: '团队成员',
+  invite_team_member: '邀请团队成员',
+  role: '角色',
+  send_invite: '发送邀请',
+  saving: '保存中…',
+  invite_saved: '邀请已保存。',
+
+  // Admin Suppliers
+  suppliers: '供应商',
+  contact: '联系人',
+  location: '地点',
+  orders: '订单',
+  payment: '付款',
+  last_active: '最近活跃',
+  view: '查看',
+
+  // Admin Buyers
+  buyers: '买家',
+  buyer: '买家',
+  wechat: '微信',
+  type: '类型',
+  quotes: '报价',
+  manager: '经理',
+
+  // Admin Orders
+  all_orders: '所有订单',
+  order_id: '订单编号',
+  cost_nok: '成本（挪威克朗）',
+  sale_usd: '销售（美元）',
+  margin: '利润率',
+  deposit_pct: '定金%',
+  balance: '余额',
+  shipping: '运输',
+  stock: '库存状态',
+  notes: '备注',
+
+  // Admin Inventory
+  inventory: '库存',
+  items: '项',
+  qty: '数量',
+  supplier: '供应商',
+  stage: '阶段',
+  date_entered: '入库日期',
+  est_next_move: '预计下次移动',
+
+  // Buyer Quotes
+  my_quotes: '我的报价',
+  new_quote_request: '新报价请求',
+  quote_id: '报价编号',
+  requested: '请求时间',
+  deposit_col: '定金',
+
+  // Buyer Quote New
+  request_received: '请求已收到',
+  request_received_msg: '您的请求已收到。Jessica将在24小时内与您联系。',
+  request_a_quote: '申请报价',
+  select_product: '选择产品',
+  model_sku: '型号/SKU',
+  sizes_qty_per_size: '尺码及每尺码数量',
+  total_quantity: '总数量',
+  delivery_timeline: '交货时间偏好',
+  additional_notes: '附加说明',
+  preorder_interest: '我对预购商品感兴趣',
+  submit_request: '提交请求',
+
+  // Buyer Orders
+  my_orders: '我的订单',
+  order_date: '订购日期',
+  shipment: '货运',
+  est_arrival: '预计到达',
+  tracking: '追踪',
+
+  // Buyer Profile
+  wechat_id: '微信ID',
+  shipping_address: '收货地址',
+  account_type: '账户类型',
+
+  // Supplier Products
+  my_products: '我的产品',
+  sku: 'SKU',
+  size: '尺码',
+  price_nok: '价格（挪威克朗）',
+  discount_pct: '折扣%',
+  est_delivery: '预计交货',
+
+  // Supplier Orders
+  buyer_ref: '买家参考',
+  payment_terms_col: '付款条款',
 };
 
 export default cn;
