@@ -47,10 +47,10 @@ const AdminOrders = () => {
                   <td className="p-2 text-muted-foreground">{o.products}</td>
                   <td className="p-2 text-right text-foreground">{o.qty}</td>
                   <td className="p-2 text-right font-mono text-foreground">{o.supplierCostNOK.toLocaleString()}</td>
-                  <td className="p-2 text-right font-mono text-foreground">${o.salePriceUSD.toLocaleString()}</td>
+                  <td className="p-2 text-right font-mono text-foreground">¥{o.salePriceUSD.toLocaleString()}</td>
                   <td className="p-2 text-right font-medium text-foreground">{o.marginPct}%</td>
                   <td className="p-2 text-right text-foreground">{o.depositPaid}%</td>
-                  <td className="p-2 text-right font-mono text-foreground">${o.balanceDueUSD.toLocaleString()}</td>
+                  <td className="p-2 text-right font-mono text-foreground">¥{o.balanceDueUSD.toLocaleString()}</td>
                   <td className="p-2 text-muted-foreground">{o.orderType}</td>
                   <td className="p-2"><StatusBadge status={o.stockStatus} /></td>
                   <td className="p-2"><StatusBadge status={o.shippingStatus} /></td>
