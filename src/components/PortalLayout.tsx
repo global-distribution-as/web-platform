@@ -104,6 +104,9 @@ const PortalLayout = ({ children, navItems, portalName, variant = 'default', acc
             <Menu className="h-5 w-5" />
           </button>
           <h2 className="text-foreground font-medium text-sm">{portalName}</h2>
+          <div className="ml-auto mr-16">
+            <Logo className="h-5 w-auto" variant="dark" />
+          </div>
           <LanguageSwitcher portal={portal} />
         </header>
 
