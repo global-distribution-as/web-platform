@@ -79,9 +79,9 @@ const Landing = () => {
 
       {/* Login card */}
       <div className="relative z-10 w-full max-w-[420px] mx-4">
-        <div className="backdrop-blur-2xl bg-white/[0.03] rounded-2xl p-8 md:p-10 border border-white/[0.08] shadow-2xl shadow-black/40">
+        <div className="backdrop-blur-2xl bg-black/[0.55] rounded-2xl p-8 md:p-10 border border-white/[0.08] shadow-2xl shadow-black/40">
           <div className="text-center mb-8">
-            <Logo className="h-10 mx-auto mb-6" variant="dark" />
+            <Logo className="h-10 mx-auto mb-6 block" variant="dark" />
             <h1 className="text-lg font-semibold text-foreground tracking-wide">Sign In</h1>
             <p className="text-muted-foreground text-sm mt-1.5 font-light">
               You'll be redirected to your portal
@@ -132,7 +132,7 @@ const Landing = () => {
 
         {/* Footer */}
         <p className="text-center text-[11px] text-white/20 mt-8 tracking-wide">
-          © 2025 Global Distribution AS
+          © 2026 Global Distribution AS
         </p>
       </div>
     </div>
